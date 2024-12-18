@@ -8,9 +8,6 @@ combination_value = [1, 2, 3, 4, 5, 6]
 #Etape 2: Génération de la combinaison secrète
 def secret_combination():
     return [random.choice(combination_value) for _ in range(combination_len)]
-# Test de la fonction secret_combination
-secret_test = secret_combination()
-print(f"Combinaison secrète générée (test) : {secret_test}")
 
 #Etape 3: Récupération de la proposition du joueur
 def get_proposition():
@@ -21,9 +18,6 @@ def get_proposition():
             return [int(char) for char in choice]  # Conversion en liste d'entiers
         else:
             print(f"Saisie invalide. Vérifiez que votre choix est composé de {combination_len} chiffres et utilise seulement ces valeurs : {', '.join(map(str, combination_value))}.")
-# Test de la fonction get_proposition
-player_choice = get_proposition()
-print(f"Choix du joueur : {player_choice}")
 
 #Etape 4: Vérification de la proposition du joueur
 def verify_proposition(secret_test, choice):
@@ -34,12 +28,19 @@ def verify_proposition(secret_test, choice):
     correct_numbers = sum(min(secret_test_counts[number], choice_counts[number]) for number in combination_value)
     misplaced = correct_numbers - well_placed
     return well_placed, misplaced
+
+'''
+#Test Unitaire
+# Test de la fonction secret_combination
+secret_test = secret_combination()
+print(f"Combinaison secrète générée (test) : {secret_test}")
+# Test de la fonction get_proposition
+player_choice = get_proposition()
+print(f"Choix du joueur : {player_choice}")
 # Test de la fonction verify_proposition
 well_placed, misplaced = verify_proposition(secret_test, player_choice)
 print(f"Nombre de Chiffres bien placés : {well_placed}, Nombre de Chiffres mal placés : {misplaced}")
-
-
-
+'''
 
 #Etape 5 et 6: Boucle de jeu principale
 def game_mastermind():
