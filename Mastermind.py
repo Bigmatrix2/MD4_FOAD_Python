@@ -41,6 +41,35 @@ print(f"Nombre de Chiffres bien placés : {well_placed}, Nombre de Chiffres mal 
 
 
 
+#Etape 5 et 6: Boucle de jeu principale
+def game_mastermind():
+    print("Bienvenue au jeu des cerveaux!")
+    secret = secret_combination()  # Génération de la combinaison secrète
+    attempts_left = maximum_try
+
+    while attempts_left > 0:
+        print(f"\nTentatives restantes: {attempts_left}")
+        # Récupérer la proposition du joueur
+        player_guess = get_proposition()  # Appel correct de la fonction
+        # Vérification de la proposition
+        well_placed, misplaced = verify_proposition(secret, player_guess)
+        # Affichage des résultats
+        print(f"Chiffres bien placés : {well_placed}")
+        print(f"Chiffres mal placés : {misplaced}")
+        
+        if well_placed == combination_len:
+            print("Félicitations, vous avez trouvé la combinaison secrète!")
+            return
+
+        attempts_left -= 1
+
+    print(f"\nGame Over! La combinaison secrète était : {''.join(map(str, secret))}")
+
+# Lancer le jeu
+if __name__ == "__main__":
+    game_mastermind()
+
+
 
 
 
